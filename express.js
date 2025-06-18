@@ -36,7 +36,12 @@ app.post('/login',  upload.any(), (req, res)=>{
 app.get('/reg', (req, res)=>{
     res.render('reg');
 });
-
+app.post('/reg',  upload.any(), (req, res)=>{
+    console.log(req.body.fullName);
+    console.log(req.body.login);
+    console.log(req.body.password);
+    res.send('ok');
+});
 
 
 

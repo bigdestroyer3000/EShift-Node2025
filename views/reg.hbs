@@ -1,16 +1,26 @@
-<div class="container my-5">
-    <h1 class="text-center">Авторизация</h1>
-    <div class="col-sm-4 mx-auto">
-        <form action="/login" method="post" enctype="multipart/form-data">
-            <div class="mb-3">
-                <input type="text" class="form-control" name="email" placeholder="Email">
-            </div>
-            <div class="mb-3">
-                <input type="text" class="form-control" name="pass" placeholder="Пароль">
-            </div>
-            <div class="mb-3">
-                <input type="submit" class="form-control btn btn-primary" value="Войти">
-            </div>
-        </form>
+<div class="reg">
+    <div class="card bg-light">
+        <div class="card-body">
+            <h2 class="card-title mb-4">Форма регистрации</h2>
+            <form action="/reg" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="fullName" class="form-label">Имя:</label>
+                    <input type="text" class="form-control" id="fullName" name="fullName" required autofocus />
+                </div>
+
+                <div class="mb-3">
+                    <label for="login" class="form-label">Логин:</label>
+                    <input type="text" class="form-control" id="login" name="login" required />
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Пароль:</label>
+                    <input type="password" class="form-control" id="password" name="password" required />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+            </form>
+        </div>
     </div>
 </div>
+<style> .reg { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #7faf7a; /* Оливковый фон */ } .card { max-width: 400px; padding: 2rem; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,.1), 0 6px 6px rgba(0,0,0,.2); } input.form-control { border-radius: 6px; transition: all 0.3s ease-in-out; } input.form-control:focus { outline: none; box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,187,106,0.6); } button.btn-primary { background-color: #5cb85c; /* Более насыщенный зеленый цвет кнопки */ border-color: transparent; border-radius: 6px; width: 100%; cursor: pointer; } button.btn-primary:hover, button.btn-primary:focus { background-color: #4cae4c; } label { font-weight: bold; margin-top: 1rem; } .card-title { font-size: 1.5em; font-weight: bold; margin-bottom: 1.5rem; } </style>
