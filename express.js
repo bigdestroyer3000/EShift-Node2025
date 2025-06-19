@@ -61,18 +61,15 @@ app.get('/hello', (req, res)=>{
 app.get('/addArticle', (req, res)=>{
     res.render('add_article');
 });
-app.post('/addArticle', upload.any(), (req, res)=>{
+app.post('/addArticle', upload.any(), async (req, res)=>{
 
-    const title = "Заголовк статьи";
-    const content = "Контетн";
-    const author = "Автор";
+    const { title, content, author } = req.body;
 
-    //await
-    pool.query('INSERT INTO articles (title, content, author) VALUES ($1, $2, $3)', [title, content, author]);
-
-    //const connection = mysql.createConnection(dbConfig);
-    //connection.execute(`INSERT INTO articles (title, content, author) VALUES (?, ?, ?)`, [title, content, author]);
-    //connection.end();
+    try {
+        await pool.query('INSERT INTO articles (title, content, author) VALUES ($1, $2, $3)', [title, content, author]);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
     res.send('ok');
 })
 app.listen(port, () => {
