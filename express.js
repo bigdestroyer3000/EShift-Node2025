@@ -6,13 +6,23 @@ const exhbs = require('express-handlebars');
 const path = require('path');
 const multer  = require('multer')
 const upload = multer();
-const mysql = require('mysql2');
-const dbConfig = {
-    host: "127.127.126.50",
-    user: "root",
-    password: "",
-    database: "express5"
-}
+const { Pool } = require('pg');
+
+const pool = new Pool({
+    user: 'postman',
+    host: 'localhost',
+    database: 'EShiftNodeCourse2025',
+    password: 'qwerty',
+    port: 5432,
+});
+
+pool.query('SELECT NOW()', (err, res) => {
+    if(err) {
+        console.error('Error connecting to the database', err.stack);
+    } else {
+        console.log('Connected to the database:', res.rows);
+    }
+});
 
 app.engine('hbs', exhbs.engine({
     extname: '.hbs',
@@ -52,12 +62,17 @@ app.get('/addArticle', (req, res)=>{
     res.render('add_article');
 });
 app.post('/addArticle', upload.any(), (req, res)=>{
+
     const title = "Заголовк статьи";
     const content = "Контетн";
     const author = "Автор";
-    const connection = mysql.createConnection(dbConfig);
-    connection.execute(`INSERT INTO articles (title, content, author) VALUES (?, ?, ?)`, [title, content, author]);
-    connection.end();
+
+    //await
+    pool.query('INSERT INTO articles (title, content, author) VALUES ($1, $2, $3)', [title, content, author]);
+
+    //const connection = mysql.createConnection(dbConfig);
+    //connection.execute(`INSERT INTO articles (title, content, author) VALUES (?, ?, ?)`, [title, content, author]);
+    //connection.end();
     res.send('ok');
 })
 app.listen(port, () => {

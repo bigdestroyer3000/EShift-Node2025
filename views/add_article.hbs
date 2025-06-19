@@ -1,0 +1,23 @@
+<div class="article">
+    <div class="container d-flex justify-content-center my-5">
+        <div class="form-container">
+            <h2 class="text-center"><i class="fas fa-edit me-2"></i> Новая статья</h2>
+            <form action="/addArticle" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="articleTitle"><i class="fas fa-heading me-2"></i>Заголовок статьи</label>
+                    <input type="text" class="form-control" id="articleTitle" name="title" placeholder="Укажите заголовок вашей статьи..." required>
+                </div>
+                <div class="form-group">
+                    <label for="content"><i class="fas fa-file-alt me-2"></i>Контент статьи</label>
+                    <textarea class="form-control" id="content" name="content" rows="5" placeholder="Напишите содержание статьи здесь..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="author"><i class="fas fa-user me-2"></i>Автор статьи</label>
+                    <input type="text" class="form-control" id="author" name="author" placeholder="Укажите ваше имя или псевдоним..." required>
+                </div>
+                <button type="submit" class="btn btn-block">Отправить статью</button>
+            </form>
+        </div>
+    </div>
+</div>
+<style> .article { background-color: #7fa68b; /* Оливковый фон */ color: #fff; } .form-container { max-width: 600px; margin: auto; padding: 2rem; background-color: rgba(0, 0, 0, 0.1); border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); } .form-group { margin-bottom: 1.5rem; } .form-control { background-color: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.3); } .form-control::placeholder { color: rgba(255, 255, 255, 0.6); } .btn { background-color: #5bb85a; border-color: #5bb85a; color: #fff; } .btn:hover { background-color: #4da54d; } </style>
