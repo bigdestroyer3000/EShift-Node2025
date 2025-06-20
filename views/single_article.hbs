@@ -1,0 +1,37 @@
+<div class="container">
+    <h1>{{article.title}}</h1>
+    <p>{{article.content}}</p>
+    <p>{{article.author}}</p>
+    <hr>
+    <a href="/editArticle/{{article.id}}">[редактировать]</a>
+    <a href="/deleteArticle/{{article.id}}" class="text-danger">[удалить]</a>
+    <hr>
+    <p>Список комментариев</p>
+    <ul class="comments-list">
+        {{#each comments}}
+            <li class="comment-item">
+                <i class="fa fa-user-circle-o comment-icon" aria-hidden="true"></i>
+                <span class="author-name">{{this.name}}</span>
+                <p class="comment-text">{{this.content}}</p>
+            </li>
+        {{/each}}
+    </ul>
+    <hr>
+    <div class="comment-form-container">
+        <h2>Оставьте комментарий:</h2>
+        <form action="/addArticleComment" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="article" value="{{article.id}}"/>
+            <div class="input-group">
+                <label for="author">Ваше имя:</label>
+                <input type="text" id="author" name="author" required placeholder="Иван Иванов">
+            </div>
+
+            <div class="textarea-group">
+                <label for="message">Комментарий:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+</div>
